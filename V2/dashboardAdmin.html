@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/estiloRocho.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="src/admin.js" defer></script>
+    <title>Alquiler de Autos - Administrador</title>
+</head>
+
+<body>
+<header>
+        <img class="logo-empresa" src="img/fondoBlanco.png" alt="LogoEmpresa">
+        
+    <nav>
+        <a href="dashboardUsuario.html" title="Inicio">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="#Autos" title="Autos">
+            <i class="fas fa-car"></i>
+            <span>Autos</span>
+        </a>
+        <a href="#Contacto" title="Contacto">
+            <i class="fas fa-envelope"></i>
+            <span>Contacto</span>
+        </a>
+        <div class="menu-usuario">
+            <a href="#" class="alternador-usuario" title="Usuario">
+            <i class="fas fa-user-circle"></i>
+            <span>Usuario</span>
+        </a>
+        <div class="desplegable-usuario">
+            <div class="info-usuario">
+                <i class="fas fa-user"></i>
+                <span>San Pitorico</span>
+            </div>
+        <a href="dashboardUsuario.html" class="item-desplegable">
+            <i class="fas fa-cog"></i>
+            <span>Modo Usuario</span>
+        </a>
+        <a href="/login.html" class="item-desplegable cerrar-sesion">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Cerrar sesión</span>
+        </a>
+        </div>
+    </div>
+</nav>
+    <div class="contenedor-busqueda">
+        <input type="text" placeholder="Buscar autos...">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+</header>
+<div class="nashe"></div>
+
+<main id="Modificaciones">
+    <h2>Gestionar Autos</h2>
+    
+    <div class="contenedor-formulario">
+        <button class="boton-toggle-form" id="toggleFormBtn">
+            <i class="fas fa-plus"></i>
+            <span>Agregar Auto</span>
+        </button>
+        
+        <div class="campos-formulario" id="camposFormulario">
+            <div class="campo-grupo">
+                <label for="nombreAuto">Nombre del auto</label>
+                <input type="text" id="nombreAuto" placeholder="Ej: Ford Fiesta">
+            </div>
+            
+            <div class="campo-grupo">
+                <label for="precioAuto">Precio por día</label>
+                <input type="number" id="precioAuto" placeholder="Ej: 50">
+            </div>
+            
+            <div class="campo-grupo">
+                <label for="imagenAuto">URL de imagen</label>
+                <input type="url" id="imagenAuto" placeholder="https://ejemplo.com/imagen.jpg">
+            </div>
+            
+            <button class="boton-agregar" id="agregarAutoBtn">
+                <i class="fas fa-check"></i> Confirmar y Agregar
+            </button>
+        </div>
+    </div>
+
+    <div class="grilla-autos">
+        <div class="tarjeta-auto">
+            <img src="img/ford-fiesta-color-245207.webp" alt="Auto" />
+            <h3>Ford Fiesta</h3>
+            <p>Precio por día: $50</p>
+            <button class="edit-admin">Modificar</button>
+            <button class="delete-admin">Eliminar</button>
+        </div>
+        <div class="tarjeta-auto">
+            <img src="/img/ford-fiesta-color-245207.webp" alt="Auto" />
+            <h3>Chevrolet Cruze</h3>
+            <p>Precio por día: $65</p>
+            <button class="edit-admin">Modificar</button>
+            <button class="delete-admin">Eliminar</button>
+        </div>
+        <div class="tarjeta-auto">
+            <img src="/img/ford-fiesta-color-245207.webp" alt="Auto" />
+            <h3>Ford Fiesta</h3>
+            <p>Precio por día: $50</p>
+            <button class="edit-admin">Modificar</button>
+            <button class="delete-admin">Eliminar</button>
+        </div>
+    </div>
+</main>
+
+<footer>
+<p>© 2025 Panel Admin - Todos los derechos reservados</p>
+</footer>
+
+<script>
+// Menú desplegable de usuario
+document.addEventListener('DOMContentLoaded', function() {
+    const alternadorUsuario = document.querySelector('.alternador-usuario');
+    const menuUsuario = document.querySelector('.menu-usuario');
+
+    alternadorUsuario.addEventListener('click', function(e) {
+        e.preventDefault();
+        menuUsuario.classList.toggle('activo');
+    });
+
+    // Cerrar el menú al hacer clic fuera
+    document.addEventListener('click', function(e) {
+        if (!menuUsuario.contains(e.target)) {
+            menuUsuario.classList.remove('activo');
+        }
+    });
+
+    // Toggle del formulario
+    const toggleFormBtn = document.getElementById('toggleFormBtn');
+    const camposFormulario = document.getElementById('camposFormulario');
+
+    toggleFormBtn.addEventListener('click', function() {
+        camposFormulario.classList.toggle('visible');
+        toggleFormBtn.classList.toggle('activo');
+        
+        // Cambiar texto del botón
+        const span = toggleFormBtn.querySelector('span');
+        if (camposFormulario.classList.contains('visible')) {
+            span.textContent = 'Cancelar';
+        } else {
+            span.textContent = 'Agregar Auto';
+        }
+    });
+
+    // Agregar auto (simulación)
+    const agregarAutoBtn = document.getElementById('agregarAutoBtn');
+    agregarAutoBtn.addEventListener('click', function() {
+        const nombre = document.getElementById('nombreAuto').value;
+        const precio = document.getElementById('precioAuto').value;
+        const imagen = document.getElementById('imagenAuto').value;
+
+        if (nombre && precio && imagen) {
+            alert(`Auto agregado:\nNombre: ${nombre}\nPrecio: $${precio}`);
+            
+            // Limpiar campos
+            document.getElementById('nombreAuto').value = '';
+            document.getElementById('precioAuto').value = '';
+            document.getElementById('imagenAuto').value = '';
+            
+            // Cerrar formulario
+            camposFormulario.classList.remove('visible');
+            toggleFormBtn.classList.remove('activo');
+            toggleFormBtn.querySelector('span').textContent = 'Agregar Auto';
+        } else {
+            alert('Por favor completa todos los campos');
+        }
+    });
+});
+</script>
+
+</body>
+</html>

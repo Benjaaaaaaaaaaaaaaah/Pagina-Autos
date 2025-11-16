@@ -1,0 +1,873 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    background: #f5f5f5;
+    line-height: 1.6;
+}
+
+/* ========== HEADER ========== */
+header {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo-empresa {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.logo-empresa:hover {
+    transform: scale(1.05);
+}
+
+/* ========== NAVEGACIÓN ========== */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    justify-content: flex-start;
+    margin-left: 30px;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+nav a i {
+    font-size: 18px;
+}
+
+nav a:hover {
+    background-color: rgba(255, 0, 0, 0.8);
+    transform: translateY(-2px);
+}
+
+/* ========== MENÚ USUARIO ========== */
+.menu-usuario {
+    position: relative;
+}
+
+.alternador-usuario {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.alternador-usuario:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.desplegable-usuario {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 2200;
+    pointer-events: none;
+}
+
+.menu-usuario.activo .desplegable-usuario {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.info-usuario {
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #333;
+    font-weight: 600;
+}
+
+.info-usuario i {
+    font-size: 22px;
+    color: #1e88e5;
+}
+
+.item-desplegable {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    color: #333 !important;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.item-desplegable:hover {
+    background: #f5f5f5;
+    padding-left: 20px;
+}
+
+.item-desplegable i {
+    font-size: 16px;
+    color: #666;
+}
+
+.item-desplegable.cerrar-sesion {
+    color: #d32f2f !important;
+    border-top: 1px solid #eee;
+}
+
+.item-desplegable.cerrar-sesion i {
+    color: #d32f2f;
+}
+
+/* ========== BUSCADOR ========== */
+.contenedor-busqueda {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 8px 14px;
+    border-radius: 25px;
+    gap: 10px;
+    width: 100%;
+    max-width: 380px;
+    margin: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contenedor-busqueda input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 14px;
+}
+
+.contenedor-busqueda input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.contenedor-busqueda button {
+    background: #ff0000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.contenedor-busqueda button:hover {
+    background: #cc0000;
+    transform: scale(1.05);
+}
+
+/* ========== FONDO PRINCIPAL ========== */
+.fondo-principal {
+    position: relative;
+    min-height: 80vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.fondo-principal img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+}
+
+.fondo-principal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    z-index: 0;
+}
+
+.fondo-principal > *:not(img) {
+    position: relative;
+    z-index: 1;
+}
+
+/* ========== SECCIÓN AUTOS ========== */
+#Autos {
+    padding: 40px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+#Autos h1 {
+    color: #000;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+}
+
+.grilla-autos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 20px;
+}
+
+/* ========== TARJETAS DE AUTOS ========== */
+.tarjeta-auto {
+    background: white;
+    border-radius: 16px;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.tarjeta-auto:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.tarjeta-auto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.tarjeta-auto h3 {
+    margin: 16px 16px 8px;
+    font-size: 20px;
+    color: #333;
+}
+
+.tarjeta-auto p {
+    margin: 0 16px 16px;
+    color: #666;
+    font-size: 14px;
+}
+
+.tarjeta-auto > button,
+.tarjeta-auto button {
+    width: calc(100% - 32px);
+    margin: 8px 16px 16px;
+    box-sizing: border-box;
+    padding: 12px 16px;
+}
+
+/* ========== BOTONES ========== */
+button {
+    padding: 12px 24px;
+    border: none;
+    background: #000;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #ff0000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+button.eliminar {
+    background: #d32f2f;
+}
+
+button.eliminar:hover {
+    background: #b71c1c;
+}
+
+button.editar {
+    background: #f57c00;
+}
+
+button.editar:hover {
+    background: #e65100;
+}
+
+.edit-admin {
+    background: #0e394ce9;
+}
+
+.edit-admin:hover {
+    background: #07587be3;
+}
+
+.delete-admin {
+    background: #ff0000;
+}
+
+.delete-admin:hover {
+    background: #9c0707d8;
+}
+
+.boton-cargar-mas {
+    display: inline-block;
+    background: white;
+    color: #000;
+    border: 2px solid #000;
+    padding: 14px 40px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.boton-cargar-mas:hover {
+    background: #000;
+    color: #ff0000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== SECCIÓN MODIFICACIONES ========== */
+#Modificaciones {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#Modificaciones h2 {
+    color: #000;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 700;
+}
+
+.contenedor-formulario {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 0 auto 40px;
+    max-width: 600px;
+    border: 2px solid #e0e0e0;
+}
+
+.boton-toggle-form {
+    width: 100%;
+    padding: 16px 25px;
+    border: none;
+    background: linear-gradient(135deg, #000 0%, #333 100%);
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.boton-toggle-form:hover {
+    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+.boton-toggle-form i {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.boton-toggle-form.activo i {
+    transform: rotate(45deg);
+}
+
+.campos-formulario {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.campos-formulario.visible {
+    max-height: 600px;
+    opacity: 1;
+    margin-top: 25px;
+}
+
+.campo-grupo {
+    margin-bottom: 20px;
+}
+
+.campo-grupo label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.campo-grupo input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.campo-grupo input:focus {
+    outline: none;
+    border-color: #000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.boton-agregar {
+    width: 100%;
+    padding: 16px 25px;
+    border: none;
+    background: #0e394ce9;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.boton-agregar:hover {
+    background: #07587be3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(14, 57, 76, 0.3);
+}
+
+/* ========== MODAL ========== */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    width: 100%;
+    max-width: 480px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    max-height: calc(100vh - 80px);
+    overflow: auto;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+    outline: none;
+    border-color: #000;
+}
+
+.close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 24px;
+    color: #d32f2f;
+    cursor: pointer;
+    line-height: 1;
+    background: transparent;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.close:hover {
+    transform: scale(1.2);
+}
+
+.termsText {
+    font-size: 13px;
+    color: #666;
+    margin: 10px 0 20px 0;
+    line-height: 1.5;
+}
+
+#confirmRental:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ========== ANIMACIONES AUTOS ========== */
+#masAutos {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#masAutos.visible {
+    display: grid;
+    opacity: 1;
+    animation: aparecer 0.5s ease forwards;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#masAutos.oculto {
+    display: none;
+    opacity: 0;
+}
+
+.contenedor-cargar-mas {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 20px;
+}
+
+/* Controlar visibilidad de botones Ver Más / Ver Menos */
+#botonVerMas,
+#botonVerMenos {
+    display: none;
+}
+
+#botonVerMas.visible {
+    display: inline-block;
+}
+
+#botonVerMenos.visible {
+    display: inline-block;
+}
+
+/* ========== FOOTER ========== */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    margin-top: 60px;
+}
+
+.contenedor-redes {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.enlace-red {
+    font-size: 28px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.enlace-red:hover {
+    transform: translateY(-4px) scale(1.1);
+}
+
+.whatsapp:hover {
+    color: #25d366;
+}
+
+.instagram:hover {
+    color: #e4405f;
+}
+
+/* ========== ACCESIBILIDAD ========== */
+button:focus,
+.contenedor-busqueda input:focus,
+.tarjeta-auto button:focus,
+nav a:focus {
+    outline: 3px solid rgba(30, 136, 229, 0.5);
+    outline-offset: 2px;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablets grandes (1024px - 1200px) */
+@media (max-width: 1200px) {
+    .grilla-autos {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    
+    nav {
+        margin-left: 20px;
+        gap: 10px;
+    }
+}
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+    header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+    
+    nav {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .contenedor-busqueda {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    .grilla-autos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+    
+    .tarjeta-auto img {
+        height: 180px;
+    }
+    
+    .modal-content {
+        max-width: 90%;
+        padding: 24px;
+    }
+}
+
+/* Móviles grandes (600px - 768px) */
+@media (max-width: 768px) {
+    .logo-empresa {
+        width: 60px;
+        height: 60px;
+    }
+    
+    nav a span {
+        display: none;
+    }
+    
+    nav a {
+        padding: 10px;
+        font-size: 20px;
+    }
+    
+    .grilla-autos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .tarjeta-auto img {
+        height: 160px;
+    }
+    
+    #Autos,
+    #Modificaciones {
+        padding: 30px 16px;
+    }
+    
+    .modal-content {
+        max-width: 94%;
+        padding: 20px;
+    }
+    
+    .contenedor-formulario {
+        padding: 20px;
+    }
+    
+    .desplegable-usuario {
+        min-width: 200px;
+        right: -10px;
+    }
+}
+
+/* Móviles pequeños (hasta 600px) */
+@media (max-width: 600px) {
+    header {
+        padding: 10px 12px;
+    }
+    
+    .logo-empresa {
+        width: 50px;
+        height: 50px;
+    }
+    
+    nav {
+        gap: 8px;
+    }
+    
+    nav a {
+        padding: 8px;
+        font-size: 18px;
+    }
+    
+    .contenedor-busqueda {
+        padding: 6px 12px;
+        border-radius: 20px;
+    }
+    
+    .contenedor-busqueda input {
+        font-size: 13px;
+    }
+    
+    .grilla-autos {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .tarjeta-auto img {
+        height: 200px;
+    }
+    
+    .tarjeta-auto h3 {
+        font-size: 18px;
+    }
+    
+    #Autos h1,
+    #Modificaciones h2 {
+        font-size: 24px;
+        margin-bottom: 24px;
+    }
+    
+    .modal-content {
+        padding: 20px 16px;
+        max-width: 96%;
+    }
+    
+    .boton-cargar-mas {
+        padding: 12px 30px;
+        font-size: 14px;
+    }
+    
+    button {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+    
+    .contenedor-formulario {
+        padding: 16px;
+    }
+    
+    .boton-toggle-form,
+    .boton-agregar {
+        padding: 14px 20px;
+        font-size: 14px;
+    }
+    
+    footer {
+        padding: 24px 16px;
+    }
+    
+    .enlace-red {
+        font-size: 24px;
+    }
+}
+
+/* Móviles extra pequeños (hasta 400px) */
+@media (max-width: 400px) {
+    .logo-empresa {
+        width: 45px;
+        height: 45px;
+    }
+    
+    nav a {
+        padding: 6px;
+        font-size: 16px;
+    }
+    
+    .tarjeta-auto {
+        border-radius: 12px;
+    }
+    
+    .modal-content {
+        border-radius: 12px;
+    }
+}

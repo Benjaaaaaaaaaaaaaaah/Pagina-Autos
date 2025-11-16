@@ -1,0 +1,9 @@
+NOTAS DE LA VERSION 2:
+-Desarrollo HTML Dashboard Usuario y Administrador.
+-Diseño final CSS de Login, Registro y Dashboard Usuario.
+-Progreso de diseño de CSS de Dashboard Admin.
+-Desarrollo del menu de Usuario.
+-Desarrollo de botones de vista de automoviles en Alquiler.
+-Conexion con la API de Autos.
+-Desarrollo de Seccion de Alquiler.
+-Desarrollo de la carga de datos de Autos desde la API.

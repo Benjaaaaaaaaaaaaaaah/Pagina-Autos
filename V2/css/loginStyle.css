@@ -1,0 +1,611 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+    animation: pulso 15s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes pulso {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moverCuadricula 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes moverCuadricula {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+#contenedor-encabezado {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(20px);
+    padding: 25px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.logo-empresa {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+    background: white;
+    object-fit: cover;
+}
+
+.logo-empresa:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.3);
+}
+
+#contenedor-login,
+#contenedor-registro {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 5;
+    min-height: 0;
+}
+
+form {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 50px 45px;
+    border-radius: 24px;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    width: 100%;
+    max-width: 440px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: deslizarEntrada 0.8s ease-out;
+    position: relative;
+}
+
+form::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #000, #666, #000, #666);
+    border-radius: 24px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background-size: 400% 400%;
+    animation: desplazarGradiente 8s ease infinite;
+}
+
+form:hover::before {
+    opacity: 0.5;
+}
+
+@keyframes desplazarGradiente {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes deslizarEntrada {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: clamp(24px, 5vw, 32px);
+    background: linear-gradient(135deg, #000 0%, #4a4a4a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.grupo-entrada {
+    position: relative;
+    margin-bottom: 28px;
+}
+
+.grupo-entrada i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.grupo-entrada input {
+    width: 100%;
+    padding: 18px 20px 18px 55px;
+    border: 2px solid #e0e0e0;
+    border-radius: 14px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #fafafa;
+    color: #1a1a1a;
+    position: relative;
+}
+
+.grupo-entrada input:focus {
+    outline: none;
+    border-color: #1a1a1a;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.grupo-entrada input:focus ~ i {
+    color: #000;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.grupo-entrada input::placeholder {
+    color: #999;
+}
+
+.contenedor-enlace {
+    text-align: right;
+    margin-bottom: 30px;
+}
+
+#contenedor-registro .contenedor-enlace {
+    text-align: center;
+}
+
+#enlace-registrar, #enlace-login {
+    color: #4a4a4a;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+}
+
+#enlace-registrar::after, #enlace-login::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: #000;
+    transition: width 0.3s ease;
+}
+
+#enlace-registrar:hover, #enlace-login:hover {
+    color: #000;
+}
+
+#enlace-registrar:hover::after, #enlace-login:hover::after {
+    width: 100%;
+}
+
+#boton-login, #boton-registro {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #000 0%, #2d2d2d 100%);
+    border: none;
+    border-radius: 14px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+#boton-login::before, #boton-registro::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+#boton-login:hover::before, #boton-registro:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+#boton-login:hover, #boton-registro:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #1a1a1a 0%, #3d3d3d 100%);
+}
+
+#boton-login:active, #boton-registro:active {
+    transform: translateY(-1px);
+}
+
+.linea-decorativa {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.linea-1 {
+    width: 40%;
+    top: 30%;
+    left: -20%;
+    transform: rotate(-45deg);
+}
+
+.linea-2 {
+    width: 50%;
+    bottom: 20%;
+    right: -25%;
+    transform: rotate(45deg);
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablets grandes y laptops pequeñas (max-width: 1024px) */
+@media (max-width: 1024px) {
+    form {
+        max-width: 420px;
+        padding: 45px 40px;
+    }
+
+    .logo-empresa {
+        height: 70px;
+        width: 70px;
+    }
+
+    #contenedor-encabezado {
+        padding: 20px 15px;
+    }
+}
+
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    body::after {
+        background-size: 40px 40px;
+    }
+
+    #contenedor-encabezado {
+        padding: 18px 15px;
+    }
+
+    .logo-empresa {
+        height: 60px;
+        width: 60px;
+    }
+
+    #contenedor-login,
+    #contenedor-registro {
+        padding: 30px 20px;
+    }
+
+    form {
+        padding: 40px 35px;
+        max-width: 400px;
+        border-radius: 20px;
+    }
+
+    h2 {
+        margin-bottom: 35px;
+        font-size: 26px;
+    }
+
+    .grupo-entrada {
+        margin-bottom: 24px;
+    }
+
+    .grupo-entrada input {
+        padding: 16px 18px 16px 50px;
+        font-size: 14px;
+        border-radius: 12px;
+    }
+
+    .grupo-entrada i {
+        left: 18px;
+        font-size: 16px;
+    }
+
+    #boton-login, #boton-registro {
+        padding: 16px;
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
+
+    .contenedor-enlace {
+        margin-bottom: 25px;
+    }
+
+    #enlace-registrar, #enlace-login {
+        font-size: 13px;
+    }
+}
+
+/* Móviles grandes (max-width: 600px) */
+@media (max-width: 600px) {
+    body::after {
+        background-size: 30px 30px;
+    }
+
+    #contenedor-encabezado {
+        padding: 15px 12px;
+    }
+
+    .logo-empresa {
+        height: 55px;
+        width: 55px;
+        border-width: 2px;
+    }
+
+    #contenedor-login,
+    #contenedor-registro {
+        padding: 25px 15px;
+    }
+
+    form {
+        padding: 35px 28px;
+        margin: 0 10px;
+        max-width: 100%;
+        border-radius: 18px;
+    }
+
+    h2 {
+        margin-bottom: 30px;
+        font-size: 24px;
+        letter-spacing: -0.5px;
+    }
+
+    .grupo-entrada {
+        margin-bottom: 22px;
+    }
+
+    .grupo-entrada input {
+        padding: 15px 16px 15px 48px;
+        font-size: 14px;
+        border-radius: 12px;
+    }
+
+    .grupo-entrada i {
+        left: 16px;
+        font-size: 15px;
+    }
+
+    #boton-login, #boton-registro {
+        padding: 15px;
+        font-size: 14px;
+        border-radius: 12px;
+    }
+
+    .contenedor-enlace {
+        margin-bottom: 22px;
+    }
+}
+
+/* Móviles pequeños (max-width: 400px) */
+@media (max-width: 400px) {
+    body::after {
+        background-size: 25px 25px;
+    }
+
+    #contenedor-encabezado {
+        padding: 12px 10px;
+    }
+
+    .logo-empresa {
+        height: 50px;
+        width: 50px;
+    }
+
+    #contenedor-login,
+    #contenedor-registro {
+        padding: 20px 10px;
+    }
+
+    form {
+        padding: 30px 22px;
+        margin: 0 5px;
+        border-radius: 16px;
+    }
+
+    h2 {
+        margin-bottom: 25px;
+        font-size: 22px;
+    }
+
+    .grupo-entrada {
+        margin-bottom: 20px;
+    }
+
+    .grupo-entrada input {
+        padding: 14px 15px 14px 45px;
+        font-size: 13px;
+        border-radius: 10px;
+    }
+
+    .grupo-entrada i {
+        left: 15px;
+        font-size: 14px;
+    }
+
+    #boton-login, #boton-registro {
+        padding: 14px;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+    }
+
+    #enlace-registrar, #enlace-login {
+        font-size: 12px;
+    }
+}
+
+/* Móviles extra pequeños y orientación horizontal */
+@media (max-width: 360px), (max-height: 600px) {
+    #contenedor-login,
+    #contenedor-registro {
+        padding: 15px 10px;
+    }
+
+    form {
+        padding: 25px 20px;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+
+    .grupo-entrada {
+        margin-bottom: 18px;
+    }
+
+    .grupo-entrada input {
+        padding: 13px 14px 13px 42px;
+    }
+
+    .contenedor-enlace {
+        margin-bottom: 18px;
+    }
+}
+
+/* Optimización para pantallas táctiles */
+@media (hover: none) and (pointer: coarse) {
+    #boton-login:hover, 
+    #boton-registro:hover {
+        transform: none;
+    }
+
+    #boton-login:active, 
+    #boton-registro:active {
+        transform: scale(0.98);
+    }
+
+    .logo-empresa:hover {
+        transform: none;
+    }
+
+    .grupo-entrada input {
+        font-size: 16px; /* Previene zoom en iOS */
+    }
+}
+
+/* Modo landscape en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+    #contenedor-encabezado {
+        padding: 10px 15px;
+    }
+
+    .logo-empresa {
+        height: 45px;
+        width: 45px;
+    }
+
+    #contenedor-login,
+    #contenedor-registro {
+        padding: 15px;
+    }
+
+    form {
+        padding: 20px 30px;
+        max-width: 90%;
+    }
+
+    h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .grupo-entrada {
+        margin-bottom: 15px;
+    }
+
+    .grupo-entrada input {
+        padding: 12px 14px 12px 42px;
+    }
+
+    .contenedor-enlace {
+        margin-bottom: 15px;
+    }
+
+    #boton-login, #boton-registro {
+        padding: 12px;
+    }
+}
+
+
+
+
+
+
+
+
+
+

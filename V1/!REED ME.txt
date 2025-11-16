@@ -1,0 +1,5 @@
+NOTAS DE LA VERSION 1:
+-Estructura basica de HTML en Registro y Login.
+-Estructura temporal en el CSS sobre Registro y Login.
+-Conexion con la API usuario para Login y Registro.
+-Se puede logear el Admin y el Usuario.
