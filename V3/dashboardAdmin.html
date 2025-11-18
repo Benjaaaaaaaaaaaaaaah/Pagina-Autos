@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/estiloAdmin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="src/admin.js" defer></script>
+    <title>Alquiler de Autos - Administrador</title>
+</head>
+<body>
+<header>
+    <img class="logo-empresa" src="img/fondoBlanco.png" alt="LogoEmpresa">
+        
+    <nav>
+        <a href="dashboardUsuario.html" title="Inicio">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="#Autos" title="Autos">
+            <i class="fas fa-car"></i>
+            <span>Autos</span>
+        </a>
+        <a href="#Contacto" title="Contacto">
+            <i class="fas fa-envelope"></i>
+            <span>Contacto</span>
+        </a>
+        <div class="menu-usuario">
+            <a href="#" class="alternador-usuario" title="Usuario">
+            <i class="fas fa-user-circle"></i>
+            <span>Usuario</span>
+            </a>
+        <div class="desplegable-usuario">
+            <div class="info-usuario">
+                <i class="fas fa-user"></i>
+                <span>San Pitorico</span>
+            </div>
+            <a href="dashboardUsuario.html" class="item-desplegable">
+                <i class="fas fa-cog"></i>
+                <span>Modo Usuario</span>
+            </a>
+            <a href="/login.html" class="item-desplegable cerrar-sesion">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Cerrar sesión</span>
+            </a>
+        </div>
+        </div>
+</nav>
+    <div class="contenedor-busqueda">
+        <input type="text" placeholder="Buscar autos...">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+</header>
+
+<main id="Modificaciones">
+    <h2>Gestionar Autos</h2>
+    
+    <div class="contenedor-formulario">
+        <button class="boton-toggle-form" id="toggleFormBtn">
+            <i class="fas fa-plus"></i>
+            <span>Agregar Auto</span>
+        </button>
+        
+        <div class="campos-formulario" id="camposFormulario">
+            <div class="campo-grupo">
+                <label for="marcaAuto">Marca</label>
+                <input type="text" id="marcaAuto" placeholder="Ej: Ford ">
+            </div>
+
+            <div class="campo-grupo">
+                <label for="modeloAuto">Modelo</label>
+                <input type="text" id="modeloAuto" placeholder="Ej: Fiesta ">
+            </div>
+            
+            <div class="campo-grupo">
+                <label for="precioAuto">Precio por día</label>
+                <input type="number" id="precioAuto" placeholder="Ej: 50">
+            </div>
+            
+            <div class="campo-grupo">
+                <label for="imagenAuto">URL de imagen</label>
+                <input type="url" id="imagenAuto" placeholder="https://ejemplo.com/imagen.jpg">
+            </div>
+            
+            <div class="campo-grupo">
+                <label for="nombreDueno">Nombre del Dueño</label>
+                <input type="text" id="nombreDueño" placeholder="Ej: Juan Perez ">
+            </div>
+
+            <div class="campo-grupo">
+                <label for="patente">Patente</label>
+                <input type="text" id="patenteAuto" placeholder="Ej: AC967PM ">
+            </div>
+
+            <div class="campo-grupo">
+                <label for="motor">Motor</label>
+                <input type="text" id="motor" placeholder="Ej: Naftero 1.6 ">
+            </div>
+            
+            <button class="boton-agregar" id="agregarAutoBtn">
+                <i class="fas fa-check"></i> Confirmar y Agregar
+            </button>
+        </div>
+    </div>
+    <!-- Sección Autos Disponibles -->
+    <div class="seccion-estado">
+        <h3 class="titulo-estado disponible">
+            <i class="fas fa-check-circle"></i> Autos Disponibles
+        </h3>
+        <div class="grilla-autos" id="autosDisponibles">
+            <div class="tarjeta-auto" data-estado="disponible">
+                <div class="badge-estado disponible">Disponible</div>
+                <img src="img/ford-fiesta-color-245207.webp" alt="Auto" />
+                <h3>Fiat Cronos</h3>
+                <p><strong>Precio por día:</strong> $45</p>
+                <p><strong>Patente:</strong> EFG567</p>
+                <button class="edit-admin" onclick="abrirModalEditar(this)">Modificar</button>
+                <button class="delete-admin">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Autos Rentados -->
+    <div class="seccion-estado">
+        <h3 class="titulo-estado rentado">
+            <i class="fas fa-key"></i> Autos Rentados
+        </h3>
+        <div class="grilla-autos" id="autosRentados">
+            <div class="tarjeta-auto" data-estado="rentado">
+                <div class="badge-estado rentado">Rentado</div>
+                <img src="img/ford-fiesta-color-245207.webp" alt="Auto" />
+                <h3>Toyota Corolla</h3>
+                <p><strong>Precio por día:</strong> $55</p>
+                <p><strong>Patente:</strong> GHI789</p>
+                <p class="info-renta"><i class="fas fa-user"></i> Rentado por: Juan Pérez</p>
+                <button class="edit-admin" onclick="abrirModalEditar(this)">Modificar</button>
+                <button class="delete-admin">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Autos en Taller -->
+    <div class="seccion-estado">
+        <h3 class="titulo-estado taller">
+            <i class="fas fa-tools"></i> Autos en Taller
+        </h3>
+        <div class="grilla-autos" id="autosTaller">
+            <div class="tarjeta-auto" data-estado="taller">
+                <div class="badge-estado taller"><i class="fas fa-tools"></i></div>
+                <img src="img/ford-fiesta-color-245207.webp" alt="Auto" />
+                <h3>Honda Civic</h3>
+                <p><strong>Precio por día:</strong> $60</p>
+                <p><strong>Patente:</strong> JKL012</p>
+                <button class="edit-admin" onclick="abrirModalEditar(this)">Modificar</button>
+                <button class="delete-admin">Eliminar</button>
+            </div>
+            <div class="tarjeta-auto" data-estado="taller">
+                <div class="badge-estado taller"><i class="fas fa-tools"></i></div>
+                <img src="img/ford-fiesta-color-245207.webp" alt="Auto" />
+                <h3>Nissan Sentra</h3>
+                <p><strong>Precio por día:</strong> $52</p>
+                <p><strong>Patente:</strong> MNO345</p>
+                <button class="edit-admin" onclick="abrirModalEditar(this)">Modificar</button>
+                <button class="delete-admin">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Modal para Editar Auto -->
+<div id="modalEditar" class="modal hidden">
+    <div class="modal-content">
+        <span class="close" onclick="cerrarModalEditar()">&times;</span>
+        <h2 style="margin-bottom: 20px; color: #333;">Modificar Auto</h2>
+        
+        <div class="campo-grupo">
+            <label for="editMarca">Marca</label>
+            <input type="text" id="editMarca" placeholder="Ej: Ford">
+        </div>
+        
+        <div class="campo-grupo">
+            <label for="editModelo">Modelo</label>
+            <input type="text" id="editModelo" placeholder="Ej: Fiesta">
+        </div>
+        
+        <div class="campo-grupo">
+            <label for="editPrecio">Precio por día</label>
+            <input type="number" id="editPrecio" placeholder="Ej: 50">
+        </div>
+        
+        <div class="campo-grupo">
+            <label for="editImagen">URL de imagen</label>
+            <input type="url" id="editImagen" placeholder="https://ejemplo.com/imagen.jpg">
+        </div>
+        
+        <div class="campo-grupo">
+            <label for="editDueno">Nombre del dueño</label>
+            <input type="text" id="editDueno" placeholder="Ej: Carlos González">
+        </div>
+        
+        <div class="campo-grupo">
+            <label for="editPatente">Patente</label>
+            <input type="text" id="editPatente" placeholder="Ej: ABC123">
+        </div>
+        
+        <div class="campo-grupo">
+            <label for="editMotor">Motor</label>
+            <input type="text" id="editMotor" placeholder="Ej: 1.6L Turbo">
+        </div>
+        
+        <div class="campo-grupo">
+            <label for="editEstado">Estado</label>
+            <select id="editEstado">
+                <option value="disponible">Disponible</option>
+                <option value="rentado">Rentado</option>
+                <option value="taller">En Taller</option>
+            </select>
+        </div>
+        
+        <button class="boton-agregar" onclick="guardarCambios()">
+            <i class="fas fa-save"></i> Guardar Cambios
+        </button>
+    </div>
+</div>
+
+<div class="seccion-estadisticas">
+    <h2><i class="fas fa-chart-pie"></i> Estadísticas de Alquileres</h2>
+    
+    <div class="contenedor-estadisticas">
+        <!-- Tarjetas de resumen -->
+        <div class="tarjetas-resumen">
+            <div class="tarjeta-estadistica disponible">
+                <div class="icono-estadistica">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="info-estadistica">
+                    <h3 id="cantidadDisponibles">0</h3>
+                    <p>Disponibles</p>
+                </div>
+            </div>
+            
+            <div class="tarjeta-estadistica rentado">
+                <div class="icono-estadistica">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="info-estadistica">
+                    <h3 id="cantidadRentados">0</h3>
+                    <p>Rentados</p>
+                </div>
+            </div>
+            
+            <div class="tarjeta-estadistica taller">
+                <div class="icono-estadistica">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="info-estadistica">
+                    <h3 id="cantidadTaller">0</h3>
+                    <p>En Taller</p>
+                </div>
+            </div>
+            
+            <div class="tarjeta-estadistica total">
+                <div class="icono-estadistica">
+                    <i class="fas fa-car"></i>
+                </div>
+                <div class="info-estadistica">
+                    <h3 id="cantidadTotal">0</h3>
+                    <p>Total de Autos</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Gráfico de barras -->
+        <div class="contenedor-grafico">
+            <h3>Distribución de Estados</h3>
+            <div class="grafico-barras" id="graficoBarras">
+                <div class="barra-wrapper">
+                    <div class="barra disponible" id="barraDisponibles">
+                        <span class="porcentaje" id="porcentajeDisponibles">0%</span>
+                    </div>
+                    <p class="etiqueta-barra">Disponibles</p>
+                </div>
+                
+                <div class="barra-wrapper">
+                    <div class="barra rentado" id="barraRentados">
+                        <span class="porcentaje" id="porcentajeRentados">0%</span>
+                    </div>
+                    <p class="etiqueta-barra">Rentados</p>
+                </div>
+                
+                <div class="barra-wrapper">
+                    <div class="barra taller" id="barraTaller">
+                        <span class="porcentaje" id="porcentajeTaller">0%</span>
+                    </div>
+                    <p class="etiqueta-barra">En Taller</p>
+                </div>
+            </div>
+        </div>
+
+<footer>
+<p>© 2025 Panel Admin - Todos los derechos reservados</p>
+</footer>
+</body>
+</html>

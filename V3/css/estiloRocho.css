@@ -1,0 +1,795 @@
+body {
+    margin: 0;
+    background: #f5f5f5;
+    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo-empresa {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.logo-empresa:hover {
+    transform: scale(1.05);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    justify-content: flex-start;
+    margin-left: 30px;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+nav a i {
+    font-size: 18px;
+}
+
+nav a:hover {
+    background-color: rgba(255, 0, 0, 0.8);
+    transform: translateY(-2px);
+}
+
+.menu-usuario {
+    position: relative;
+}
+
+.alternador-usuario {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.alternador-usuario span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.alternador-usuario:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.desplegable-usuario {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    min-width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.menu-usuario.activo .desplegable-usuario {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.info-usuario {
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #333;
+    font-weight: 600;
+}
+
+.info-usuario i {
+    font-size: 22px;
+    color: #1e88e5;
+}
+
+.item-desplegable {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    color: #333 !important;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.item-desplegable:hover {
+    background: #f5f5f5;
+    padding-left: 20px;
+}
+
+.item-desplegable i {
+    font-size: 16px;
+    color: #666;
+}
+
+.item-desplegable.cerrar-sesion {
+    color: #d32f2f !important;
+    border-top: 1px solid #eee;
+}
+
+.item-desplegable.cerrar-sesion i {
+    color: #d32f2f;
+}
+
+.contenedor-busqueda {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 8px 14px;
+    border-radius: 25px;
+    gap: 10px;
+    width: 100%;
+    max-width: 380px;
+    margin: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contenedor-busqueda input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 14px;
+}
+
+.contenedor-busqueda input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.contenedor-busqueda button {
+    background: #ff0000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.contenedor-busqueda button:hover {
+    background: #cc0000;
+    transform: scale(1.05);
+}
+
+.fondo-principal {
+    position: relative;
+    min-height: 80vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.fondo-principal img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+}
+
+.fondo-principal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    z-index: 0;
+}
+
+.fondo-principal > *:not(img) {
+    position: relative;
+    z-index: 1;
+}
+
+#Autos {
+    padding: 40px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+#Autos h1 {
+    color: #000;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+}
+
+.grilla-autos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 20px;
+}
+
+.tarjeta-auto {
+    background: white;
+    border-radius: 16px;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.tarjeta-auto:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.tarjeta-auto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.tarjeta-auto h3 {
+    margin: 16px 16px 8px;
+    font-size: 20px;
+    color: #333;
+}
+
+.tarjeta-auto p {
+    margin: 0 16px 16px;
+    color: #666;
+    font-size: 14px;
+}
+
+.tarjeta-auto > button,
+.tarjeta-auto button {
+    width: calc(100% - 32px);
+    margin: 8px 16px 16px;
+    box-sizing: border-box;
+    padding: 12px 16px;
+}
+
+button {
+    padding: 12px 24px;
+    border: none;
+    background: #000;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #ff0000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+.boton-cargar-mas {
+    display: inline-block;
+    background: white;
+    color: #000;
+    border: 2px solid #000;
+    padding: 14px 40px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.boton-cargar-mas:hover {
+    background: #000;
+    color: #ff0000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.boton-cargar-mas:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    width: 100%;
+    max-width: 480px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    max-height: calc(100vh - 80px);
+    overflow: auto;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content input, .modal-content select {
+    width: 100%;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.modal-content input:focus, .modal-content select:focus {
+    outline: none;
+    border-color: #000;
+}
+
+.close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 24px;
+    color: #d32f2f;
+    cursor: pointer;
+    line-height: 1;
+    background: transparent;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.close:hover {
+    transform: scale(1.2);
+}
+
+.termsText {
+    font-size: 13px;
+    color: #666;
+    margin: 10px 0 20px 0;
+    line-height: 1.5;
+}
+
+#confirmRental:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ========== TRANSICIONES MEJORADAS PARA VER MÁS/MENOS ========== */
+
+#masAutos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 20px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                margin-bottom 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#masAutos.visible {
+    max-height: 2000px;
+    opacity: 1;
+    margin-bottom: 20px;
+}
+
+#masAutos.oculto {
+    max-height: 0;
+    opacity: 0;
+    margin-bottom: 0;
+}
+
+/* Animación para tarjetas individuales */
+#masAutos .tarjeta-auto {
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#masAutos.visible .tarjeta-auto {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Retraso escalonado para cada tarjeta */
+#masAutos.visible .tarjeta-auto:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+#masAutos.visible .tarjeta-auto:nth-child(2) {
+    transition-delay: 0.15s;
+}
+
+#masAutos.visible .tarjeta-auto:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+#masAutos.visible .tarjeta-auto:nth-child(4) {
+    transition-delay: 0.25s;
+}
+
+#masAutos.visible .tarjeta-auto:nth-child(5) {
+    transition-delay: 0.3s;
+}
+
+#masAutos.visible .tarjeta-auto:nth-child(6) {
+    transition-delay: 0.35s;
+}
+
+.contenedor-cargar-mas {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 20px;
+}
+
+#botonVerMas, #botonVerMenos {
+    display: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#botonVerMas.visible {
+    display: inline-block;
+    animation: fadeInScale 0.3s ease forwards;
+}
+
+#botonVerMenos.visible {
+    display: inline-block;
+    animation: fadeInScale 0.3s ease forwards;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contenedor-renta {
+    display: flex;
+    gap: 12px;
+    margin: 10px 0;
+}
+
+#diasDeRenta, #costoDeRenta {
+    flex: 1;
+    width: auto !important;
+    margin: 0 !important;
+}
+
+#costoDeRenta {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    color: #333;
+    font-weight: 600;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    margin-top: 60px;
+}
+
+.contenedor-redes {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.enlace-red {
+    font-size: 28px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.enlace-red:hover {
+    transform: translateY(-4px) scale(1.1);
+}
+
+.whatsapp:hover {
+    color: #25d366;
+}
+
+.instagram:hover {
+    color: #e4405f;
+}
+
+button:focus,
+.contenedor-busqueda input:focus,
+.tarjeta-auto button:focus,
+nav a:focus {
+    outline: 3px solid rgba(30, 136, 229, 0.5);
+    outline-offset: 2px;
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 1200px) {
+    .grilla-autos {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    
+    #masAutos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    nav {
+        margin-left: 20px;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 1024px) {
+    header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+    
+    nav {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .contenedor-busqueda {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    .grilla-autos, #masAutos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+    
+    .tarjeta-auto img {
+        height: 180px;
+    }
+    
+    .modal-content {
+        max-width: 90%;
+        padding: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-empresa {
+        width: 60px;
+        height: 60px;
+    }
+    
+    nav a span {
+        display: none;
+    }
+    
+    nav a {
+        padding: 10px;
+        font-size: 20px;
+    }
+    
+    .grilla-autos, #masAutos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .tarjeta-auto img {
+        height: 160px;
+    }
+    
+    #Autos {
+        padding: 30px 16px;
+    }
+    
+    .modal-content {
+        max-width: 94%;
+        padding: 20px;
+    }
+    
+    .desplegable-usuario {
+        min-width: 200px;
+        right: -10px;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 10px 12px;
+    }
+    
+    .logo-empresa {
+        width: 50px;
+        height: 50px;
+    }
+    
+    nav {
+        gap: 8px;
+    }
+    
+    nav a {
+        padding: 8px;
+        font-size: 18px;
+    }
+    
+    .contenedor-busqueda {
+        padding: 6px 12px;
+        border-radius: 20px;
+    }
+    
+    .contenedor-busqueda input {
+        font-size: 13px;
+    }
+    
+    .grilla-autos, #masAutos {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    #masAutos.visible {
+        max-height: 3500px;
+    }
+    
+    .tarjeta-auto img {
+        height: 200px;
+    }
+    
+    .tarjeta-auto h3 {
+        font-size: 18px;
+    }
+    
+    #Autos h1 {
+        font-size: 24px;
+        margin-bottom: 24px;
+    }
+    
+    .modal-content {
+        padding: 20px 16px;
+        max-width: 96%;
+    }
+    
+    .boton-cargar-mas {
+        padding: 12px 30px;
+        font-size: 14px;
+    }
+    
+    button {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+    
+    footer {
+        padding: 24px 16px;
+    }
+    
+    .enlace-red {
+        font-size: 24px;
+    }
+    
+    .contenedor-renta {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    #diasDeRenta,
+    #costoDeRenta {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .logo-empresa {
+        width: 45px;
+        height: 45px;
+    }
+    
+    nav a {
+        padding: 6px;
+        font-size: 16px;
+    }
+    
+    .tarjeta-auto {
+        border-radius: 12px;
+    }
+    
+    .modal-content {
+        border-radius: 12px;
+    }
+}

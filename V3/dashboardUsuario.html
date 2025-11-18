@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/estiloRocho.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <title>Alquiler de Autos - Usuario</title>
+</head>
+
+<body>
+<header>
+    <img class="logo-empresa" src="img/fondoBlanco.png" alt="LogoEmpresa">
+
+    <nav>
+        <a href="dashboardUsuario.html" title="Inicio">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="#Autos" title="Autos">
+            <i class="fas fa-car"></i>
+            <span>Autos</span>
+        </a>
+        <a href="#Contacto" title="Contacto">
+            <i class="fas fa-envelope"></i>
+            <span>Contacto</span>
+        </a>
+        <div class="menu-usuario">
+            <a href="#" class="alternador-usuario" title="Usuario">
+                <i class="fas fa-user-circle"></i>
+                <span>Usuario</span>
+            </a>
+            <div class="desplegable-usuario">
+                <div class="info-usuario">
+                    <i class="fas fa-user"></i>
+                    <span>San Pitorico</span>
+                </div>
+                <a href="dashboardAdmin.html" class="item-desplegable">
+                    <i class="fas fa-cog"></i>
+                    <span>Administrador</span>
+                </a>
+                <a href="/login.html" class="item-desplegable cerrar-sesion">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar sesión</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="contenedor-busqueda">
+        <input type="text" placeholder="Buscar autos...">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+</header>
+
+<div class="fondo-principal">
+    <img src="img/FondoPagWeb.jpg" alt="Banner Principal">
+</div>
+
+<main id="Autos">
+    <h1>Autos Disponibles</h1>
+    
+    <div class="grilla-autos" id="grilla1">
+        
+    </div>
+
+    <div class="grilla-autos" id="grilla2">
+        
+    </div>
+
+    <div class="grilla-autos oculto" id="masAutos">
+        
+    </div>
+
+    <div class="contenedor-cargar-mas">
+        <button id="botonVerMas" class="boton-cargar-mas visible">Ver más</button>
+        <button id="botonVerMenos" class="boton-cargar-mas">Ver menos</button>
+    </div>
+
+    <div id="rentalModal" class="modal hidden">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+
+            <h2>Información del vehículo</h2>
+            <p><strong>Dueño:</strong> <span id="ownerName"></span></p>
+            <p><strong>Marca:</strong> <span id="carBrand"></span></p>
+            <p><strong>Patente:</strong> <span id="carPlate"></span></p>
+            <p><strong>Tipo de Motor:</strong> <span id="engineType"></span></p>
+
+            <hr>
+
+            <h3>Formulario del cliente</h3>
+            <form id="rentalForm">
+                <input type="text" placeholder="Nombre y Apellido" required><br>
+                <input type="number" placeholder="DNI" required><br>
+
+                <select required>
+                    <option value="" disabled selected>Método de Pago</option>
+                    <option>Efectivo</option>
+                    <option>Tarjeta</option>
+                    <option>Transferencia</option>
+                </select><br>
+
+                <input type="text" placeholder="Carnet de conducir (N°)" required><br>
+
+                <input type="number" id="diasDeRenta" required placeholder="Cantidad de Días de renta">
+                <input type="number" id="costoDeRenta" readonly placeholder="Costo Total de Renta ($)">
+                <br>
+                <label>
+                    <input type="checkbox" id="termsCheckbox">
+                    Acepto los términos y condiciones
+                </label>
+
+                <p class="termsText">
+                    El vehículo deberá ser devuelto en perfectas condiciones, tal cual se entregó. 
+                    Cualquier daño ocasionado tendrá un costo adicional.
+                </p>
+
+                <button type="submit" id="confirmRental" disabled>Confirmar Alquiler</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<footer id="Contacto">
+    <p>© 2025 Alquiler de Autos - Todos los derechos reservados.</p>
+
+    <div class="contenedor-redes">
+        <a href="https://wa.me/549XXXXXXXXX" target="_blank" class="enlace-red whatsapp" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <a href="https://www.instagram.com/tuusuario" target="_blank" class="enlace-red instagram" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+</footer>
+
+<script src="src/usuario.js" defer></script>
+</body>
+</html>

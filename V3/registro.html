@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="css/loginStyle.css">
+    <script src="src/registro.js" defer></script>
+    <title>Registro Alquiler de Autos</title>
+</head>
+<body>
+    <div class="linea-decorativa linea-1"></div>
+    <div class="linea-decorativa linea-2"></div>
+    
+    <header id="contenedor-encabezado">
+        <img class="logo-empresa" src="img/fondoBlanco.png" alt="Logo Empresa">
+    </header>
+    
+    <div id="contenedor-registro">
+        <form autocomplete="off">
+            <h2>Crear Cuenta</h2>
+
+            <div id="mensajeError" style="display: none; background: #ffebee; color: #c62828; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;"></div>
+            
+            <div class="grupo-entrada">
+                <input type="text" name="user" id="usuario-registro" placeholder="Nombre de Usuario" required>
+                <i class="fa-solid fa-user"></i>
+            </div>
+            
+            <div class="grupo-entrada">
+                <input type="email" name="email" id="email-registro" placeholder="Correo Electrónico" required>
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+            
+            <div class="grupo-entrada">
+                <input type="password" name="password" id="contrasena-registro" placeholder="Contraseña" required>
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            
+            <div class="contenedor-enlace">
+                <a href="login.html" id="enlace-login">¿Ya tienes cuenta? Inicia sesión</a>
+            </div>
+            
+            <a href="login.html"><button type="button" id="boton-registro">Registrarse</button></a>
+        </form>
+    </div>
+</body>
+</html>
