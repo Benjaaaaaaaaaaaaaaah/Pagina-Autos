@@ -220,6 +220,7 @@ async function cambioEstadoAuto(autoId){
     console.error("Error al cambiar el estado del auto:", error);
 }
 }
+
 // Almacena los datos del alquiler en la API
 async function rents(alquiler){
     try{

@@ -1,0 +1,9 @@
+NOTAS DE LA VERSION 3
+- Se termino el diseño de Login y Registro.
+- Se crearon los precios según los días.
+- Arreglos visuales al Dashboard de Usuario.
+- Funcionalidad a la barra de búsqueda.
+- Almacenamiento de la Renta de Auto en la API.
+- Desarrollo del Dashboard de Admin.
+- Creación, modificación y eliminación de los Autos en modo Admin.
+- Creación de la tabla de estados.

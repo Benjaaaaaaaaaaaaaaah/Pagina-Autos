@@ -421,7 +421,6 @@ async function guardarCambios() {
         autosData = autos;
         mostrarAutos(autos);
         actualizarEstadisticas(autos);
-        actualizarEstadisticas(autos);
 
     } catch (error) {
         console.error('Error al actualizar auto:', error);

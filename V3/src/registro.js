@@ -9,7 +9,8 @@ async function guardarDatos(e){
     const email = document.querySelector("#email-registro").value.toLowerCase().trim();
 
     const mensajeError = document.querySelector("#mensajeError");
-// Corroborar que los campos no estén vacíos
+
+    // Corroborar que los campos no estén vacíos
     if(!username || !password || !email){
         mensajeError.textContent = "Por favor ingrese todos los datos correctamente";
         mensajeError.style.display = "block";
@@ -18,7 +19,8 @@ async function guardarDatos(e){
         }, 3000);
         return;
     }
-// Almacenar datos en una constante
+
+    // Almacenar datos en una constante
     const Usuario = {
         id: "",
         nombre: username,
@@ -31,7 +33,8 @@ async function guardarDatos(e){
         const Usuarios = await fetch("https://6911ddec52a60f10c81f988f.mockapi.io/api/users");
 
         const listaUsuarios = await Usuarios.json();
-    // Verificar si el usuario o email ya existen
+    
+        // Verificar si el usuario o email ya existen
         const existe = listaUsuarios.find(u => u.email.toLowerCase().trim() === email || u.nombre.toLowerCase().trim() === username);
 
         if(existe){
@@ -51,6 +54,7 @@ async function guardarDatos(e){
             },
             body: JSON.stringify(Usuario)
         })
+        
         // Captar respuesta de la API y registrar usuario
         if(response.ok){
             alert("Usuario registrado con éxito");
